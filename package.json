@@ -1,0 +1,24 @@
+{
+  "author"      : "Flieral Inc. <Support@Flieral.com>",
+  "name"        : "Announcer-Service",
+  "description" : "Announcer Service",
+  "version"     : "1.0.0",
+  "engines"     : {
+    "node": ">=4.0.0"
+  },
+  "dependencies" : {
+    "actionhero" : "16.0.0",
+    "ws"         : "latest",
+    "fakeredis"  : "latest",
+    "ioredis"    : "latest"
+  },
+  "devDependencies" : {
+    "mocha"  : "latest",
+    "should" : "latest"
+  },
+  "scripts" : {
+    "start"        : "actionhero start",
+    "actionhero"   : "actionhero",
+    "test"         : "NODE_ENV=test mocha"
+  }
+}
