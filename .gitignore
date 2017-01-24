@@ -35,3 +35,35 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Local Actionhero files
+
+pids/*
+tmp/*
+log/*
+cache/*
+coverage/*
+node_modules/*
+locales/*
+public/javascript/actionheroClient.js
+public/javascript/actionheroClient.min.js
+
+en.json
+
+# Node / NPM
+npm-debug.log
+
+# OS-specific wierdness
+.DS_Store
+
+# Site
+docs/_site
+docs/.sass-cache
+
+# Redis
+dump.rdb
+cache.dump
+
+# Editor-specific
+/nbproject/*
+/.idea/*
