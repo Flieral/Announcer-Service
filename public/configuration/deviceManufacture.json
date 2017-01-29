@@ -1,0 +1,796 @@
+{
+  "mobile": [{
+      "acer": "ACER"
+    },
+    {
+      "alcatel": "ALCATEL"
+    },
+    {
+      "allview": "ALLVIEW"
+    },
+    {
+      "amazon": "AMAZON"
+    },
+    {
+      "amoi": "AMOI"
+    },
+    {
+      "apple": "APPLE"
+    },
+    {
+      "archos": "ARCHOS"
+    },
+    {
+      "asus": "ASUS"
+    },
+    {
+      "at&amp;t": "AT&AMP;T"
+    },
+    {
+      "benefon": "BENEFON"
+    },
+    {
+      "benq": "BENQ"
+    },
+    {
+      "benq-siemens": "BENQ-SIEMENS"
+    },
+    {
+      "bird": "BIRD"
+    },
+    {
+      "blackberry": "BLACKBERRY"
+    },
+    {
+      "blu": "BLU"
+    },
+    {
+      "bosch": "BOSCH"
+    },
+    {
+      "bq": "BQ"
+    },
+    {
+      "casio": "CASIO"
+    },
+    {
+      "cat": "CAT"
+    },
+    {
+      "celkon": "CELKON"
+    },
+    {
+      "chea": "CHEA"
+    },
+    {
+      "coolpad": "COOLPAD"
+    },
+    {
+      "dell": "DELL"
+    },
+    {
+      "emporia": "EMPORIA"
+    },
+    {
+      "energizer": "ENERGIZER"
+    },
+    {
+      "ericsson": "ERICSSON"
+    },
+    {
+      "eten": "ETEN"
+    },
+    {
+      "fujitsu siemens": "FUJITSU SIEMENS"
+    },
+    {
+      "garmin-asus": "GARMIN-ASUS"
+    },
+    {
+      "gigabyte": "GIGABYTE"
+    },
+    {
+      "gionee": "GIONEE"
+    },
+    {
+      "google": "GOOGLE"
+    },
+    {
+      "haier": "HAIER"
+    },
+    {
+      "hp": "HP"
+    },
+    {
+      "htc": "HTC"
+    },
+    {
+      "huawei": "HUAWEI"
+    },
+    {
+      "i-mate": "I-MATE"
+    },
+    {
+      "i-mobile": "I-MOBILE"
+    },
+    {
+      "icemobile": "ICEMOBILE"
+    },
+    {
+      "innostream": "INNOSTREAM"
+    },
+    {
+      "inq": "INQ"
+    },
+    {
+      "intex": "INTEX"
+    },
+    {
+      "jolla": "JOLLA"
+    },
+    {
+      "karbonn": "KARBONN"
+    },
+    {
+      "kyocera": "KYOCERA"
+    },
+    {
+      "lava": "LAVA"
+    },
+    {
+      "leeco": "LEECO"
+    },
+    {
+      "lenovo": "LENOVO"
+    },
+    {
+      "lg": "LG"
+    },
+    {
+      "maxon": "MAXON"
+    },
+    {
+      "maxwest": "MAXWEST"
+    },
+    {
+      "meizu": "MEIZU"
+    },
+    {
+      "micromax": "MICROMAX"
+    },
+    {
+      "microsoft": "MICROSOFT"
+    },
+    {
+      "mitac": "MITAC"
+    },
+    {
+      "mitsubishi": "MITSUBISHI"
+    },
+    {
+      "modu": "MODU"
+    },
+    {
+      "motorola": "MOTOROLA"
+    },
+    {
+      "mwg": "MWG"
+    },
+    {
+      "nec": "NEC"
+    },
+    {
+      "neonode": "NEONODE"
+    },
+    {
+      "niu": "NIU"
+    },
+    {
+      "nokia": "NOKIA"
+    },
+    {
+      "nvidia": "NVIDIA"
+    },
+    {
+      "o2": "O2"
+    },
+    {
+      "oneplus": "ONEPLUS"
+    },
+    {
+      "oppo": "OPPO"
+    },
+    {
+      "orange": "ORANGE"
+    },
+    {
+      "palm": "PALM"
+    },
+    {
+      "panasonic": "PANASONIC"
+    },
+    {
+      "pantech": "PANTECH"
+    },
+    {
+      "parla": "PARLA"
+    },
+    {
+      "philips": "PHILIPS"
+    },
+    {
+      "plum": "PLUM"
+    },
+    {
+      "posh": "POSH"
+    },
+    {
+      "prestigio": "PRESTIGIO"
+    },
+    {
+      "qmobile": "QMOBILE"
+    },
+    {
+      "qtek": "QTEK"
+    },
+    {
+      "sagem": "SAGEM"
+    },
+    {
+      "samsung": "SAMSUNG"
+    },
+    {
+      "sendo": "SENDO"
+    },
+    {
+      "sewon": "SEWON"
+    },
+    {
+      "sharp": "SHARP"
+    },
+    {
+      "siemens": "SIEMENS"
+    },
+    {
+      "sonim": "SONIM"
+    },
+    {
+      "sony": "SONY"
+    },
+    {
+      "sony ericsson": "SONY ERICSSON"
+    },
+    {
+      "spice": "SPICE"
+    },
+    {
+      "t-mobile": "T-MOBILE"
+    },
+    {
+      "tel.me.": "TEL.ME."
+    },
+    {
+      "telit": "TELIT"
+    },
+    {
+      "thuraya": "THURAYA"
+    },
+    {
+      "toshiba": "TOSHIBA"
+    },
+    {
+      "unnecto": "UNNECTO"
+    },
+    {
+      "vertu": "VERTU"
+    },
+    {
+      "verykool": "VERYKOOL"
+    },
+    {
+      "vivo": "VIVO"
+    },
+    {
+      "vk mobile": "VK MOBILE"
+    },
+    {
+      "vodafone": "VODAFONE"
+    },
+    {
+      "wiko": "WIKO"
+    },
+    {
+      "wnd": "WND"
+    },
+    {
+      "xcute": "XCUTE"
+    },
+    {
+      "xiaomi": "XIAOMI"
+    },
+    {
+      "xolo": "XOLO"
+    },
+    {
+      "yezz": "YEZZ"
+    },
+    {
+      "yota": "YOTA"
+    },
+    {
+      "yu": "YU"
+    },
+    {
+      "zte": "ZTE"
+    }
+  ],
+  "web": [{
+      "@xi computer": "@XI COMPUTER"
+    },
+    {
+      "abs computer technologies": "ABS COMPUTER TECHNOLOGIES"
+    },
+    {
+      "acer": "ACER"
+    },
+    {
+      "gateway": "GATEWAY"
+    },
+    {
+      "packard bell": "PACKARD BELL"
+    },
+    {
+      "adek industrial computers": "ADEK INDUSTRIAL COMPUTERS"
+    },
+    {
+      "advent": "ADVENT"
+    },
+    {
+      "amiga, inc.": "AMIGA, INC."
+    },
+    {
+      "a-eon technology": "A-EON TECHNOLOGY"
+    },
+    {
+      "acube systems srl": "ACUBE SYSTEMS SRL"
+    },
+    {
+      "hyperion entertainment": "HYPERION ENTERTAINMENT"
+    },
+    {
+      "agilent": "AGILENT"
+    },
+    {
+      "aigo": "AIGO"
+    },
+    {
+      "amd": "AMD"
+    },
+    {
+      "aleutia": "ALEUTIA"
+    },
+    {
+      "alienware": "ALIENWARE"
+    },
+    {
+      "amax information technologies": "AMAX INFORMATION TECHNOLOGIES"
+    },
+    {
+      "ankermann": "ANKERMANN"
+    },
+    {
+      "aorus": "AORUS"
+    },
+    {
+      "aopen": "AOPEN"
+    },
+    {
+      "apple": "APPLE"
+    },
+    {
+      "arnouse digital devices corp (addc)": "ARNOUSE DIGITAL DEVICES CORP (ADDC)"
+    },
+    {
+      "asrock": "ASROCK"
+    },
+    {
+      "asus": "ASUS"
+    },
+    {
+      "avadirect": "AVADIRECT"
+    },
+    {
+      "axioo international": "AXIOO INTERNATIONAL"
+    },
+    {
+      "benq": "BENQ"
+    },
+    {
+      "biostar": "BIOSTAR"
+    },
+    {
+      "boxx technologies, inc.": "BOXX TECHNOLOGIES, INC."
+    },
+    {
+      "chassis plans": "CHASSIS PLANS"
+    },
+    {
+      "chillblast": "CHILLBLAST"
+    },
+    {
+      "chip pc": "CHIP PC"
+    },
+    {
+      "clevo": "CLEVO"
+    },
+    {
+      "sager notebook computers": "SAGER NOTEBOOK COMPUTERS"
+    },
+    {
+      "cray": "CRAY"
+    },
+    {
+      "crystal group": "CRYSTAL GROUP"
+    },
+    {
+      "cybernet computer inc.": "CYBERNET COMPUTER INC."
+    },
+    {
+      "compal": "COMPAL"
+    },
+    {
+      "cooler master": "COOLER MASTER"
+    },
+    {
+      "cyberpowerpc": "CYBERPOWERPC"
+    },
+    {
+      "cybertron pc": "CYBERTRON PC"
+    },
+    {
+      "dell": "DELL"
+    },
+    {
+      "wyse technology": "WYSE TECHNOLOGY"
+    },
+    {
+      "dfi": "DFI"
+    },
+    {
+      "digital storm": "DIGITAL STORM"
+    },
+    {
+      "doel": "DOEL"
+    },
+    {
+      "elitegroup computer systems": "ELITEGROUP COMPUTER SYSTEMS"
+    },
+    {
+      "evans &amp; sutherland": "EVANS &AMP; SUTHERLAND"
+    },
+    {
+      "everex": "EVEREX"
+    },
+    {
+      "evga": "EVGA"
+    },
+    {
+      "falcon northwest": "FALCON NORTHWEST"
+    },
+    {
+      "fic": "FIC"
+    },
+    {
+      "fujitsu": "FUJITSU"
+    },
+    {
+      "fusion red": "FUSION RED"
+    },
+    {
+      "foxconn": "FOXCONN"
+    },
+    {
+      "founder technology": "FOUNDER TECHNOLOGY"
+    },
+    {
+      "getac": "GETAC"
+    },
+    {
+      "gigabyte": "GIGABYTE"
+    },
+    {
+      "gradiente": "GRADIENTE"
+    },
+    {
+      "groupe bull": "GROUPE BULL"
+    },
+    {
+      "grundig": "GRUNDIG"
+    },
+    {
+      "hasee": "HASEE"
+    },
+    {
+      "hcl": "HCL"
+    },
+    {
+      "hewlett-packard": "HEWLETT-PACKARD"
+    },
+    {
+      "compaq": "COMPAQ"
+    },
+    {
+      "hitachi": "HITACHI"
+    },
+    {
+      "htc": "HTC"
+    },
+    {
+      "hyundai": "HYUNDAI"
+    },
+    {
+      "ibm": "IBM"
+    },
+    {
+      "ibuypower": "IBUYPOWER"
+    },
+    {
+      "intel": "INTEL"
+    },
+    {
+      "inventec": "INVENTEC"
+    },
+    {
+      "in-win": "IN-WIN"
+    },
+    {
+      "ironside": "IRONSIDE"
+    },
+    {
+      "itautec": "ITAUTEC"
+    },
+    {
+      "igel": "IGEL"
+    },
+    {
+      "jetta international": "JETTA INTERNATIONAL"
+    },
+    {
+      "kohjinsha": "KOHJINSHA"
+    },
+    {
+      "kontron ag": "KONTRON AG"
+    },
+    {
+      "lanfirepc": "LANFIREPC"
+    },
+    {
+      "lanix": "LANIX"
+    },
+    {
+      "lanner electronics": "LANNER ELECTRONICS"
+    },
+    {
+      "lanslide gaming pcs": "LANSLIDE GAMING PCS"
+    },
+    {
+      "lenovo": "LENOVO"
+    },
+    {
+      "medion": "MEDION"
+    },
+    {
+      "lg": "LG"
+    },
+    {
+      "liteon": "LITEON"
+    },
+    {
+      "maingear": "MAINGEAR"
+    },
+    {
+      "mdg computers": "MDG COMPUTERS"
+    },
+    {
+      "meebox": "MEEBOX"
+    },
+    {
+      "mesh computers": "MESH COMPUTERS"
+    },
+    {
+      "microsoft": "MICROSOFT"
+    },
+    {
+      "micro-star international": "MICRO-STAR INTERNATIONAL"
+    },
+    {
+      "micro center": "MICRO CENTER"
+    },
+    {
+      "mitac": "MITAC"
+    },
+    {
+      "motion computing": "MOTION COMPUTING"
+    },
+    {
+      "motorola": "MOTOROLA"
+    },
+    {
+      "ncomputing": "NCOMPUTING"
+    },
+    {
+      "ncr": "NCR"
+    },
+    {
+      "nec": "NEC"
+    },
+    {
+      "nfina technologies": "NFINA TECHNOLOGIES"
+    },
+    {
+      "nvidia": "NVIDIA"
+    },
+    {
+      "nzxt": "NZXT"
+    },
+    {
+      "olidata": "OLIDATA"
+    },
+    {
+      "olivetti": "OLIVETTI"
+    },
+    {
+      "oracle": "ORACLE"
+    },
+    {
+      "origin pc": "ORIGIN PC"
+    },
+    {
+      "panasonic": "PANASONIC"
+    },
+    {
+      "positivo informática": "POSITIVO INFORMÁTICA"
+    },
+    {
+      "psychsoftpc": "PSYCHSOFTPC"
+    },
+    {
+      "puget systems": "PUGET SYSTEMS"
+    },
+    {
+      "quanta computer": "QUANTA COMPUTER"
+    },
+    {
+      "rca": "RCA"
+    },
+    {
+      "razer": "RAZER"
+    },
+    {
+      "rosewill": "ROSEWILL"
+    },
+    {
+      "samsung": "SAMSUNG"
+    },
+    {
+      "sapphire technology": "SAPPHIRE TECHNOLOGY"
+    },
+    {
+      "sharp corporation": "SHARP CORPORATION"
+    },
+    {
+      "shuttle": "SHUTTLE"
+    },
+    {
+      "sgi": "SGI"
+    },
+    {
+      "síragon": "SÍRAGON"
+    },
+    {
+      "smarterminal computers inc": "SMARTERMINAL COMPUTERS INC"
+    },
+    {
+      "sony": "SONY"
+    },
+    {
+      "stealthmachines": "STEALTHMACHINES"
+    },
+    {
+      "steiger dynamics": "STEIGER DYNAMICS"
+    },
+    {
+      "stone": "STONE"
+    },
+    {
+      "supermicro": "SUPERMICRO"
+    },
+    {
+      "systemax": "SYSTEMAX"
+    },
+    {
+      "system76": "SYSTEM76"
+    },
+    {
+      "t-platforms": "T-PLATFORMS"
+    },
+    {
+      "tabletkiosk": "TABLETKIOSK"
+    },
+    {
+      "tadpole computer": "TADPOLE COMPUTER"
+    },
+    {
+      "tatung": "TATUNG"
+    },
+    {
+      "toshiba": "TOSHIBA"
+    },
+    {
+      "tyan": "TYAN"
+    },
+    {
+      "unisys": "UNISYS"
+    },
+    {
+      "v3 gaming pc": "V3 GAMING PC"
+    },
+    {
+      "velocity micro": "VELOCITY MICRO"
+    },
+    {
+      "overdrive pc": "OVERDRIVE PC"
+    },
+    {
+      "vestel": "VESTEL"
+    },
+    {
+      "venom": "VENOM"
+    },
+    {
+      "via technologies": "VIA TECHNOLOGIES"
+    },
+    {
+      "viewsonic": "VIEWSONIC"
+    },
+    {
+      "viglen": "VIGLEN"
+    },
+    {
+      "virus computers inc.": "VIRUS COMPUTERS INC."
+    },
+    {
+      "vizio": "VIZIO"
+    },
+    {
+      "vt miltope": "VT MILTOPE"
+    },
+    {
+      "valve corporation": "VALVE CORPORATION"
+    },
+    {
+      "wistron": "WISTRON"
+    },
+    {
+      "wortmann": "WORTMANN"
+    },
+    {
+      "xiaomi": "XIAOMI"
+    },
+    {
+      "xidax": "XIDAX"
+    },
+    {
+      "zelybron": "ZELYBRON"
+    },
+    {
+      "zombie pc": "ZOMBIE PC"
+    },
+    {
+      "zoostorm": "ZOOSTORM"
+    },
+    {
+      "zotac": "ZOTAC"
+    }
+  ]
+}

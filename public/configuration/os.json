@@ -1,0 +1,34 @@
+{
+  "mobile": [{
+      "android": "Android"
+    },
+    {
+      "iOS": "iOS"
+    },
+    {
+      "windows mobile": "Windows Mobile"
+    },
+    {
+      "tizen": "Tizen"
+    },
+    {
+      "sailfish": "Sailfish OS"
+    },
+    {
+      "ubuntu touch": "Ubuntu Touch"
+    }
+  ],
+  "web": [{
+      "windows": "Windows"
+    },
+    {
+      "linux": "Linux"
+    },
+    {
+      "mac osx": "Mac OS X"
+    },
+    {
+      "unix": "Unix"
+    }
+  ]
+}

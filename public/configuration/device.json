@@ -1,0 +1,16 @@
+{
+  "mobile": [{
+      "phone": "Phone"
+    },
+    {
+      "tablet": "Tablet"
+    }
+  ],
+  "web": [{
+      "web": "Web"
+    },
+    {
+      "application": "Application"
+    }
+  ]
+}
