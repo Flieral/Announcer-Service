@@ -1,0 +1,76 @@
+{
+  "ConstantAMAAMBudget": "budget",
+  "ConstantAMAAMAccountType": "accountType",
+  "ConstantCMBudget": "budget",
+  "ConstantCMBeginningTime": "beginningTime",
+  "ConstantCMEndingTime": "endingTime",
+  "ConstantCMCampaignStatus": "campaignStatus",
+  "ConstantCMCampaignName": "campaignName",
+  "ConstantCMStartStyle": "startStyle",
+  "ConstantCMSettingStyle": "settingStyle",
+  "ConstantCMMediaStyle": "mediaStyle",
+  "ConstantCMWebhookIdentifier": "webhookIdentifier",
+  "ConstantCMMessage": "message",
+  "ConstantSCMMinBudget": "minBudget",
+  "ConstantSCMSubcampaignName": "subcampaignName",
+  "ConstantSCMSubcampaignStyle": "subcampaignStyle",
+  "ConstantSCMSubcampaignPlan": "subcampaignPlan",
+  "ConstantSCMSubcampaignPrice": "subcampaignPrice",
+  "ConstantSCMFileURL": "fileURL",
+  "ConstantSMPriority": "priority",
+  "ConstantSMCategory": "category",
+  "ConstantSMCountry": "country",
+  "ConstantSMLanguage": "language",
+  "ConstantSMDevice": "device",
+  "ConstantSMOS": "os",
+  "ConstantSMDeviceManufacture": "deviceManufacture",
+  "ConstantSMDayParting": "dayParting",
+  "ConstantSMPreferences": "preferences",
+  "ConstantSMUserLabel": "userLabel",
+  "ConstantSMConnection": "connection",
+  "TableMAAccountModelAnnouncerAccountModel": "AccountModel:AnnouncerAccountModel:",
+  "TableMACampaignModel": "CampaignModel:",
+  "TableMASubcampaignModel": "SubcampaignModel:",
+  "TableMACampaignModelSettingModel": "CampaignModel:SettingModel:",
+  "TableMASubcampaignModelSettingModel": "SubcampaignModel:SettingModel:",
+  "TableMSAccountModelCampaignModel": "AccountModel:CampaignModel:",
+  "TableMSCampaignModelSubcampaignModel": "CampaignModel:SubcampaignModel:",
+  "TableModel": {
+    "general": {
+      "CampaignModel": "CampaignModel:@:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:@:"
+    },
+    "categoryType": {
+      "CampaignModel": "CampaignModel:Category:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:Category:"
+    },
+    "countryType": {
+      "CampaignModel": "CampaignModel:Country:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:Country:"
+    },
+    "languageType": {
+      "CampaignModel": "CampaignModel:Language:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:Language:"
+    },
+    "deviceType": {
+      "CampaignModel": "CampaignModel:Device:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:Device:"
+    },
+    "osType": {
+      "CampaignModel": "CampaignModel:OS:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:OS:"
+    },
+    "userLabelType": {
+      "CampaignModel": "CampaignModel:UserLabel:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:UserLabel:"
+    },
+    "deviceManufactureType": {
+      "CampaignModel": "CampaignModel:DeviceManufacture:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:DeviceManufacture:"
+    },
+    "connectionType": {
+      "CampaignModel": "CampaignModel:Connection:",
+      "SubcampaignModel": "CampaignModel:SubcampaignModel:Connection:"
+    }
+  }
+}
