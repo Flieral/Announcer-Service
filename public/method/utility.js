@@ -27,5 +27,8 @@ module.exports = {
     for (var i = 0; i < countryList.length; i++)
       if (countryList[i].code === countryCode)
         return countryCode + ':'
+  },
+  stringReplace: function (source, find, replace) {
+    return source.replace(find, replace)
   }
 }

@@ -43,6 +43,7 @@
   "TableMSCampaignModelSubcampaignModel": "CampaignModel:SubcampaignModel:",
   "TableModel": {
     "general": {
+      "AnnouncerModel": "AccountModel:@:",
       "CampaignModel": "CampaignModel:@:",
       "SubcampaignModel": "CampaignModel:SubcampaignModel:@:"
     },
