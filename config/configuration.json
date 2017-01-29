@@ -28,6 +28,12 @@
   "ConstantSMPreferences": "preferences",
   "ConstantSMUserLabel": "userLabel",
   "ConstantSMConnection": "connection",
+  "enum" : {
+    "announcerAccountType" : {
+      "sample1" : "sample1",
+      "sample2" : "sample2"
+    }
+  },
   "TableMAAccountModelAnnouncerAccountModel": "AccountModel:AnnouncerAccountModel:",
   "TableMACampaignModel": "CampaignModel:",
   "TableMASubcampaignModel": "SubcampaignModel:",
@@ -71,6 +77,14 @@
     "connectionType": {
       "CampaignModel": "CampaignModel:Connection:",
       "SubcampaignModel": "CampaignModel:SubcampaignModel:Connection:"
+    }
+  },
+
+  "message": {
+    "missingKey": "Key is Required",
+    "account": {
+      "exist": "100100100",
+      "notExist": "100100101"
     }
   }
 }
