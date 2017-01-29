@@ -13,10 +13,11 @@ exports.getAccountModelAction = {
 	inputs: Input,
 
 	run: function (api, data, next) {
-
-		accountModelCheckerLogic.checkAccountModel(api.redisClient, data.params.accountHashID, function (err, result) {
-			if (err)
+		accountModelCheckerLogic.checkAccountModelForExistence(api.redisClient, data.params.accountHashID, function (err, result) {
+			if (err) {
 				data.response.error = err.error
+				next(err)
+			}
 			else {
 				readAccountModelLogic.getAccountModel(api.redisClient, data.params.accountHashID, function (err, replies) {
 					if (err) {
@@ -28,6 +29,5 @@ exports.getAccountModelAction = {
 				})
 			}
 		})
-
 	}
 }
