@@ -176,4 +176,60 @@ module.exports = {
     )
   },
 
+  deleteCampaignModel: function (redisClient, campaignHashID, subcampaignHashID, callback) {
+    var multi = redisClient.multi()
+    tableName = configuration.TableMASubcampaignModel + subcampaignHashID
+    redisClient.hmget(tableName,
+      configuration.ConstantSCMSubcampaignStyle,
+      configuration.ConstantSCMSubcampaignPlan,
+      function (err, replies) {
+        if (err) {
+          callback(err, null)
+          return
+        }
+
+        /* Remove from CampaignModel:SubcampaignModel:SubcampaignStyleType:accountHashID */
+        tempTable = configuration.TableModel.general.SubcampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[0]) + accountHashID
+        multi.zrem(tableName, subcampaignHashID)
+
+        /* Remove from CampaignModel:SubcampaignModel:SubcampaignPlanType:accountHashID */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[1]) + accountHashID
+        multi.zrem(tableName, subcampaignHashID)
+
+        /* Remove from CampaignModel:SubcampaignModel:SubcampaignStyleType: */
+        tempTable = configuration.TableModel.general.SubcampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[0])
+        multi.zrem(tableName, subcampaignHashID)
+
+        /* Remove from CampaignModel:SubcampaignModel:SubcampaignPlanType: */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[1])
+        multi.zrem(tableName, subcampaignHashID)
+
+        /* Remove from CampaignModel:SubcampaignModel:campaignHashID */
+        tableName = configuration.TableMSCampaignModelSubcampaignModel + campaignHashID
+        multi.zrem(tableName, subcampaignHashID)
+
+        tableName = configuration.TableMACampaignModel + campaignHashID
+        multi.hdel(tableName,
+          configuration.ConstantSCMMinBudget,
+          configuration.ConstantSCMSubcampaignName,
+          configuration.ConstantSCMSubcampaignStyle,
+          configuration.ConstantSCMSubcampaignPlan,
+          configuration.ConstantSCMSubcampaignPrice,
+          configuration.ConstantSCMFileURL
+        )
+
+        multi.exec(function (err, replies) {
+          if (err) {
+            callback(err, null)
+            return
+          }
+          callback(null, configuration.message.subcampaign.delete.successful)
+        })
+      }
+    )
+  }
 }
