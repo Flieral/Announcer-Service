@@ -6,7 +6,7 @@ module.exports = {
   setAccountModel: function (redisClient, accountHashID, payload, callback) {
     var tableName
     var score
-    var accountType 
+    var accountType
     var multi = redisClient.multi()
 
     /* Add to AccountModel:AnnouncerAccountModel:AccountHashID */
@@ -21,7 +21,7 @@ module.exports = {
     tableName = configuration.TableMAAccountModelAnnouncerAccountModel
     multi.zadd(tableName, 'NX', score, accountHashID)
 
-    /* Add to AccountModel:AnnouncerAccountType: */    
+    /* Add to AccountModel:AnnouncerAccountType: */
     accountType = payload.accountType
     tableName = configuration.TableModel.general.AnnouncerModel
     utility.stringReplace(tableName, '@', accountType)
@@ -37,7 +37,7 @@ module.exports = {
   },
   updateAccountModel: function (redisClient, accountHashID, payload, callback) {
     var multi = redisClient.multi()
-    
+
     var tableName = configuration.TableMAAccountModelAnnouncerAccountModel + accountHashID
     //Not Exist
     if (payload[configuration.ConstantAMAAMBudget] != null) {
@@ -60,9 +60,9 @@ module.exports = {
         if (err) {
           callback(err, null)
           return
-        } 
+        }
         if (replies != null && replies != undefined) {
-          if (replies !== payload.accountType) {  
+          if (replies !== payload.accountType) {
             var accountTypeTableName = configuration.TableModel.general.AnnouncerModel
             utility.stringReplace(accountTypeTableName, '@', replies)
             /* Remove accountHashID from AccountModel:AnnouncerAccountType: table */
@@ -70,7 +70,7 @@ module.exports = {
             accountTypeTableName = configuration.TableModel.general.AnnouncerModel
             utility.stringReplace(accountTypeTableName, '@', payload.accountType)
             var score = utility.getUnixTimeStamp()
-            /* Add accountHashID to AccountModel:AnnouncerAccountType:(new) table */ 
+            /* Add accountHashID to AccountModel:AnnouncerAccountType:(new) table */
             multi.zadd(accountTypeTableName, 'NX', score, accountHashID)
           }
         }
