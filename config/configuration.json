@@ -1,4 +1,9 @@
 {
+  "MinimumDelay" : 300000,
+  "MinimumDeuration" : 604800000,
+
+  "TableTemporary": "Temporary:",
+
   "ConstantAMAAMBudget": "budget",
   "ConstantAMAAMAccountType": "accountType",
   "ConstantCMBudget": "budget",
@@ -33,6 +38,12 @@
       "sample1" : "sample1",
       "sample2" : "sample2"
     }
+  },
+  "campaignEnum" : {
+    "CampaignStatus": "campaignStatus",
+    "StartStyle": "startStyle",
+    "SettingStyle": "settingStyle",
+    "MediaStyle": "mediaStyle"
   },
   "TableMAAccountModelAnnouncerAccountModel": "AccountModel:AnnouncerAccountModel:",
   "TableMACampaignModel": "CampaignModel:",
