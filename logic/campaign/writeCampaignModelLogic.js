@@ -5,7 +5,7 @@ module.exports = {
   setCampaignModel: function (redisClient, accountHashID, payload, callback) {
     var tableName, tempTable
     var campaignHashID = utility.generateUniqueHashID()
-    var score = payload[configuration.ConstantAMTime]
+    var score = utility.getUnixTimeStamp()
     var multi = redisClient.multi()
 
     payload[configuration.ConstantCMCampaignStatus] = 'pending'
@@ -82,7 +82,7 @@ module.exports = {
 
   updateCampaignModel: function (redisClient, accountHashID, campaignHashID, payload, callback) {
     var tableName, tempTable
-    var score = payload[configuration.ConstantAMTime]
+    var score = utility.getUnixTimeStamp()
     var multi = redisClient.multi()
     var updateFlag = false
     
@@ -146,12 +146,12 @@ module.exports = {
           tableName = utility.stringReplace(tempTable, '@', replies[4])
           multi.zrem(tableName, campaignHashID)
 
-          /* Update CampaignModel:StartType:accountHashID */
+          /* Add to CampaignModel:StartType:accountHashID */
           tempTable = configuration.TableModel.general.CampaignModel
           tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantCMStartStyle]) + accountHashID
           multi.zadd(tableName, score, campaignHashID)
 
-          /* Update CampaignModel:StartType: */
+          /* Add to CampaignModel:StartType: */
           tempTable = configuration.TableModel.general.CampaignModel
           tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantCMStartStyle])
           multi.zadd(tableName, score, campaignHashID)          
@@ -173,12 +173,12 @@ module.exports = {
           tableName = utility.stringReplace(tempTable, '@', replies[5])
           multi.zrem(tableName, campaignHashID)
 
-          /* Update CampaignModel:SettingType:accountHashID */
+          /* Add to CampaignModel:SettingType:accountHashID */
           tempTable = configuration.TableModel.general.CampaignModel
           tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantCMSettingStyle]) + accountHashID
           multi.zadd(tableName, score, campaignHashID)
 
-          /* Update CampaignModel:SettingType: */
+          /* Add to CampaignModel:SettingType: */
           tempTable = configuration.TableModel.general.CampaignModel
           tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantCMSettingStyle])
           multi.zadd(tableName, score, campaignHashID)
@@ -200,12 +200,12 @@ module.exports = {
           tableName = utility.stringReplace(tempTable, '@', replies[6])
           multi.zrem(tableName, campaignHashID)
 
-          /* Update CampaignModel:MediaType:accountHashID */
+          /* Add to CampaignModel:MediaType:accountHashID */
           tempTable = configuration.TableModel.general.CampaignModel
           tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantCMMediaStyle]) + accountHashID
           multi.zadd(tableName, score, campaignHashID)
 
-          /* Update CampaignModel:MediaType: */
+          /* Add to CampaignModel:MediaType: */
           tempTable = configuration.TableModel.general.CampaignModel
           tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantCMMediaStyle])
           multi.zadd(tableName, score, campaignHashID)
@@ -215,7 +215,7 @@ module.exports = {
           payload[configuration.ConstantCMCampaignStatus] = 'pending'
           payload[configuration.ConstantCMMessage] = configuration.message.campaign.message.pending
 
-          /* Add to CampaignModel:campaignHashID */
+          /* Update CampaignModel:campaignHashID */
           tableName = configuration.TableMACampaignModel + campaignHashID
           multi.hmset(tableName,
             configuration.ConstantCMCampaignStatus, payload[configuration.ConstantCMCampaignStatus],

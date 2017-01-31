@@ -28,7 +28,7 @@ module.exports = {
   getCampaignList: function (redisClient, accountHashID, filter, callback) {
     var filterKeys = Object.keys(filter)
     if (filterKeys.length == 0) {
-      var tableName = configuration.TableMSAccountModelMonitorModel + accountHashID
+      var tableName = configuration.TableMSAccountModelCampaignModel + accountHashID
       redisClient.zrange(tableName, '0', '-1', 'WITHSCORES', function (err, replies) {
         if (err) {
           callback(err, null)
@@ -82,8 +82,8 @@ module.exports = {
       }
       var counter = 0
       var response = []
-      for (var i = 0; i < result.length; i++) {
-        var model = this.getCampaignModel(redisClient.result[i], function (err, replies) {
+      for (var i = 0; i < result.length; i = i + 2) {
+        var model = this.getCampaignModel(redisClient, result[i], function (err, replies) {
           if (err) {
             callback(err, null)
             return
