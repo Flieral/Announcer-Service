@@ -36,5 +36,17 @@ module.exports = {
     })
   },
 
+  checkCampaignModelForExistence: function (redisClient, accountHashID, campaignHashID, callback) {
+    var tableName = configuration.TableMSAccountModelCampaignModel + accountHashID
+    redisClient.zscore(tableName, campaignHashID, function (err, replies) {
+      if (err) {
+        callback(err, null)
+        return
+      }
+      if (replies == null || replies == undefined)
+        callback(new Error(configuration.message.campaign.notExist), null)
+      else
+        callback(null, configuration.message.campaign.exist)
+    })
   }
 }
