@@ -73,7 +73,27 @@ module.exports = {
       })
     }
   },
-  getCampaignList: function (redisClient, accountHashID, callback) {
 
+  getCampaignListComplex: function (redisClient, accountHashID, filter, callback) {
+    this.getCampaignList(redisClient, accountHashID, filter, function (err, result) {
+      if (err) {
+        callback(err, null)
+        return
+      }
+      var counter = 0
+      var response = []
+      for (var i = 0; i < result.length; i++) {
+        var model = this.getCampaignModel(redisClient.result[i], function (err, replies) {
+          if (err) {
+            callback(err, null)
+            return
+          }
+          response.push(replies)
+          counter++
+          if (counter == result.length)
+            callback(null, response)
+        })
+      }
+    })
   }
 }
