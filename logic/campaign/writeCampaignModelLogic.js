@@ -8,8 +8,6 @@ module.exports = {
     var score = payload[configuration.ConstantAMTime]
     var multi = redisClient.multi()
 
-  },
-  deleteCampaignModel: function (redisClient, accountHashID, campaignHashID, callback) {
     payload[configuration.ConstantCMCampaignStatus] = 'pending'
     payload[configuration.ConstantCMWebhookIdentifier] = utility.generateUniqueHashID()
     payload[configuration.ConstantCMMessage] = configuration.message.campaign.message.pending
@@ -81,6 +79,7 @@ module.exports = {
       callback(null, configuration.message.campaign.set.successful)
     })
   },
+
   updateCampaignModel: function (redisClient, accountHashID, campaignHashID, payload, callback) {
     var tableName, tempTable
     var score = payload[configuration.ConstantAMTime]
@@ -233,5 +232,86 @@ module.exports = {
       }
     )
   },
+  
+  deleteCampaignModel: function (redisClient, accountHashID, campaignHashID, callback) {
+    var multi = redisClient.multi()
+    var tableName = configuration.TableMACampaignModel + campaignHashID    
+    redisClient.hmget(tableName,
+      configuration.ConstantCMStartStyle,
+      configuration.ConstantCMSettingStyle,
+      configuration.ConstantCMMediaStyle,
+      configuration.ConstantCMCampaignStatus,
+      function (err, replies) {
+        if (err) {
+          callback(err, null)
+          return
+        }
+
+        /* Delete from CampaignModel:StartType:accountHashID */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[0]) + accountHashID
+        multi.zrem(tableName, campaignHashID)
+
+        /* Delete from CampaignModel:StartType: */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[0])
+        multi.zrem(tableName, campaignHashID)
+
+        /* Delete from CampaignModel:SettingType:accountHashID */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[1]) + accountHashID
+        multi.zrem(tableName, campaignHashID)
+
+        /* Delete from CampaignModel:SettingType: */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[1])
+        multi.zrem(tableName, campaignHashID)
+
+        /* Delete from CampaignModel:MediaType:accountHashID */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[2]) + accountHashID
+        multi.zrem(tableName, campaignHashID)
+
+        /* Delete from CampaignModel:MediaType: */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[2])
+        multi.zrem(tableName, campaignHashID)
+
+        /* Delete from CampaignModel:CampaignStatusType:accountHashID */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[3]) + accountHashID
+        multi.zrem(tableName, campaignHashID)
+
+        /* Delete from CampaignModel:MediaType: */
+        tempTable = configuration.TableModel.general.CampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[3])
+        multi.zrem(tableName, campaignHashID)
+
+        /* Delete from AccountModel:CampaignModel:accountHashID */
+        tableName = configuration.TableMSAccountModelCampaignModel + accountHashID
+        multi.zrem(tableName, campaignHashID)
+        
+        multi.hdel(tableName,
+          configuration.ConstantCMBudget,
+          configuration.ConstantCMBeginningTime,
+          configuration.ConstantCMEndingTime,
+          configuration.ConstantCMCampaignStatus,
+          configuration.ConstantCMCampaignName,
+          configuration.ConstantCMStartStyle,
+          configuration.ConstantCMSettingStyle,
+          configuration.ConstantCMMediaStyle,
+          configuration.ConstantCMWebhookIdentifier,
+          configuration.ConstantCMMessage
+        )
+
+        multi.exec(function (err, replies) {
+          if (err) {
+            callback(err, null)
+            return
+          }
+          callback(null, configuration.message.campaign.delete.successful)
+        })
+      }
+    )
   }
 }
