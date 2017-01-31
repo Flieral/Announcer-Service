@@ -1,5 +1,40 @@
+var configuration = require('../../config/configuration.json')
+var utility = require('../../public/method/utility')
+
 module.exports = {
-  checkCampaignModel: function (redisClient, accountHashID, campaignHashID, callback) {
+  checkCampaignModel: function (redisClient, accountHashID, payload, callback) {
+    var begTime = utility.getUnixTimeStamp() - configuration.MinimumDelay
+    var endTime = utility.getUnixTimeStamp() + configuration.MinimumDeuration
+    var tableName = configuration.TableMAAccountModelAnnouncerAccountModel + accountHashID
+    redisClient.hget(tableName, configuration.ConstantAMAAMBudget, function (err, replies) {
+      if (err) {
+        callback(err, null)
+        return
+      }
+      if (parseInt(payload[configuration.ConstantCMBudget]) <= parseInt(replies)) {
+        // First Check Pass
+        if (parseInt(payload[configuration.ConstantCMBeginningTime]) >= begTime) {
+          // Second Check Pass
+          if (parseInt(payload[configuration.ConstantCMEndingTime]) >= endTime) {
+            // Third Check Pass
+            callback(null, 'Successful Check')
+          }
+          else {
+            callback(new Error('Ending Time Problem'), null)
+            return
+          }
+        }
+        else {
+          callback(new Error('Beginning Time Problem'), null)
+          return
+        }
+      }
+      else {
+        callback(new Error('Budget Problem'), null)
+        return
+      }
+    })
+  },
 
   }
 }
