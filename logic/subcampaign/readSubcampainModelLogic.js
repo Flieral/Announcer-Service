@@ -41,7 +41,7 @@ module.exports = {
       args.push(filterKeys.length)
       for (var i = 0; i < filterKeys.length; i++) {
         var key = configuration.campaignEnum[filterKeys[i]]
-        var table = configuration.TableName.general.SubcampaignModel + accountHashID
+        var table = configuration.TableModel.general.SubcampaignModel + accountHashID
         utility.stringReplace(table, '@', key)
         args.push(table)
       }
