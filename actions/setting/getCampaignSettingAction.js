@@ -19,7 +19,7 @@ exports.getCampaignSettingModelAction = {
 				next(err)
 			}
 			else {
-				readCampaignSettingModelLogi.getCampaignSettingModelAction(api.redisClient, data.params.campaignHashID, function (err, replies) {
+				readCampaignSettingModelLogi.getCampaignSettingModel(api.redisClient, data.params.campaignHashID, function (err, replies) {
 					if (err) {
 						data.response.error = err.error
 						next(err)

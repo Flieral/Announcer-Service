@@ -45,6 +45,19 @@
     "SettingStyle": "settingStyle",
     "MediaStyle": "mediaStyle"
   },
+  "settingEnum" : {
+    "Priority" : "Priority",
+    "Category" : "Category",
+    "Country" : "Country",
+    "Language" : "Language",
+    "Device" : "Device",
+    "OS": "OS",
+    "DeviceManufacture": "DeviceManufacture",
+    "DayParting": "DayParting",
+    "Preferences" : "Preferences",
+    "UserLabel" : "UserLabel",
+    "Connection" : "Connection"
+  },
   "TableMAAccountModelAnnouncerAccountModel": "AccountModel:AnnouncerAccountModel:",
   "TableMACampaignModel": "CampaignModel:",
   "TableMASubcampaignModel": "SubcampaignModel:",
