@@ -16,22 +16,14 @@ exports.savesubCampaignSettingAction = {
   inputs: Input,
 
   run: function (api, data, next) {
-
     var payload = JSON.parse(JSON.stringify(data.connection.rawConnection.params.body))
-    campaignSettingModelCheckerLogic.checksubCampaignSettingModelForNotExistence(api.redisClient, data.params.campaignHashID, data.params.subcampaignHashID, payload, function (err, replies) {
+    writesubCampaignSettingModelLogic.setsubCampaignSettingModel(api.redisClient, data.params.campaignHashID, data.params.subcampaignHashID, payload, function (err, replies) {
       if (err) {
         data.response.error = err.error
         next(err)
-      } else {
-        writesubCampaignSettingModelLogic.setsubCampaignSettingModel(api.redisClient, data.params.campaignHashID, data.params.subcampaignHashID, payload, function (err, replies) {
-          if (err) {
-            data.response.error = err.error
-            next(err)
-          }
-          data.response.result = replies
-          next()
-        })
       }
+      data.response.result = replies
+      next()
     })
   }
 }

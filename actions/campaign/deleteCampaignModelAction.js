@@ -17,9 +17,11 @@ exports.deleteCampaignModelAction = {
 
   run: function (api, data, next) {
     
-    campaignModelCheckerLogic.checkCampaignModel(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, result) {
-      if (err)
+    campaignModelCheckerLogic.checkCampaignModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, result) {
+      if (err) {
         data.response.error = err.error
+        next(err)
+      }
       else {
         writeCampaignModelLogic.deleteCampaignModel(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, replies) {
           if (err) {

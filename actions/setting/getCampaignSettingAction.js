@@ -2,6 +2,9 @@ var readCampaignSettingModelLogic = require('../../logic/setting/campaign/readCa
 var campaignSettingModelCheckerLogic = require('../../logic/setting/campaign/campaignSettingModelCheckerLogic')
 
 var Input = {
+	accountHashID: {
+		required: true
+	},
 	campaignHashID: {
 		required: true
 	}
@@ -13,7 +16,7 @@ exports.getCampaignSettingModelAction = {
 	inputs: Input,
 
 	run: function (api, data, next) {
-		campaignSettingModelCheckerLogic.checkCampaignSettingModelForExistence(api.redisClient, data.params.campaignHashID, function (err, result) {
+		campaignSettingModelCheckerLogic.checkCampaignSettingModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, result) {
 			if (err) {
 				data.response.error = err.error
 				next(err)

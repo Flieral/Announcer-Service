@@ -2,6 +2,9 @@ var readsubcampaignSettingModelLogic = require('../../logic/setting/subcampaign/
 var subcampaignSettingModelCheckerLogic = require('../../logic/setting/subcampaign/subcampaignSettingModelCheckerLogic')
 
 var Input = {
+  accountHashID: {
+    required: true
+  },
   campaignHashID: {
     required: true
   },
@@ -16,7 +19,7 @@ exports.getsubCampaignSettingModelAction = {
   inputs: Input,
 
   run: function (api, data, next) {
-    subcampaignSettingModelCheckerLogic.checksubCampaignSettingModelForExistence(api.redisClient, data.params.campaignHashID, data.params.subCampaignHashID, function (err, result) {
+    subcampaignSettingModelCheckerLogic.checksubCampaignSettingModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, data.params.subCampaignHashID, function (err, result) {
       if (err) {
         data.response.error = err.error
         next(err)

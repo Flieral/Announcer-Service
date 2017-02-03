@@ -16,9 +16,11 @@ exports.getCampaignModelAction = {
   inputs: Input,
 
   run: function (api, data, next) {
-    campaignModelCheckerLogic.checkCampaignModel(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, result) {
-      if (err)
+    campaignModelCheckerLogic.checkCampaignModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, result) {
+      if (err) {
         data.response.error = err.error
+        next(err)
+      }
       else {
         readCampaignModelLogic.getCampaignModel(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, replies) {
           if (err) {
