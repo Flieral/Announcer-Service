@@ -11,7 +11,10 @@ module.exports = {
       }
       var settingKeys = Object.keys(configuration.settingEnum)
       var counter = 0
-      for (var i = 1; i < settingKeys.length; i++) {
+      for (var i = 0; i < settingKeys.length; i++) {
+        if (settingKeys[i] === configuration.settingEnum.Priority)
+          continue
+        
         var key = settingKeys[i]
         var table = configuration.TableModel.general.SubcampaignModel + subCampaignHashID
         utility.stringReplace(table, '@', key)
@@ -22,7 +25,7 @@ module.exports = {
           }
           model[settingKeys[i]] = replies
           counter++
-          if (counter == (settingKeys.length - 1))
+          if (counter == settingKeys.length)
             callback(null, model)
         })
       }
