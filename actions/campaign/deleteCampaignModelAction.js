@@ -16,7 +16,6 @@ exports.deleteCampaignModelAction = {
   inputs: Input,
 
   run: function (api, data, next) {
-    
     campaignModelCheckerLogic.checkCampaignModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, result) {
       if (err) {
         data.response.error = err.error
@@ -28,11 +27,12 @@ exports.deleteCampaignModelAction = {
             data.response.error = err.error
             next(err)
           }
-          data.response.result = replies
-          next()
+          else {
+            data.response.result = replies
+            next()
+          }
         })
       }
     })
-
   }
 }

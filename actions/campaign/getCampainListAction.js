@@ -24,15 +24,16 @@ exports.getCampaignListAction = {
   inputs: Input,
 
   run: function (api, data, next) {
-
     if (data.params.complexModel) {
       readCampaignModelLogic.getCampaignListComplex(api.redisClient, data.params.accountHashID, data.params.filterObject, function (err, replies) {
         if (err) {
           data.response.error = err.error
           next(err)
         }
-        data.response.result = replies
-        next()
+        else {
+          data.response.result = replies
+          next()
+        }
       })
     }
     else {
@@ -41,8 +42,10 @@ exports.getCampaignListAction = {
           data.response.error = err.error
           next(err)
         }
-        data.response.result = replies
-        next()
+        else {
+          data.response.result = replies
+          next()
+        }
       })
     }
   }

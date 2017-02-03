@@ -27,8 +27,10 @@ exports.getCampaignModelAction = {
             data.response.error = err.error
             next(err)
           }
-          data.response.result = replies
-          next()
+          else {
+            data.response.result = replies
+            next()
+          }
         })
       }
     })

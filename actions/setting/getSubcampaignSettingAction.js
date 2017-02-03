@@ -8,7 +8,7 @@ var Input = {
   campaignHashID: {
     required: true
   },
-  subCampaignHashID: {
+  subcampaignHashID: {
     required: true
   }
 }
@@ -19,18 +19,21 @@ exports.getsubCampaignSettingModelAction = {
   inputs: Input,
 
   run: function (api, data, next) {
-    subcampaignSettingModelCheckerLogic.checksubCampaignSettingModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, data.params.subCampaignHashID, function (err, result) {
+    subcampaignSettingModelCheckerLogic.checksubCampaignSettingModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, data.params.subcampaignHashID, function (err, result) {
       if (err) {
         data.response.error = err.error
         next(err)
-      } else {
-        readsubcampaignSettingModelLogic.getsubcampaignSettingModel(api.redisClient, data.params.campaignHashID, data.params.subCampaignHashID, function (err, replies) {
+      }
+      else {
+        readsubcampaignSettingModelLogic.getsubcampaignSettingModel(api.redisClient, data.params.campaignHashID, data.params.subcampaignHashID, function (err, replies) {
           if (err) {
             data.response.error = err.error
             next(err)
           }
-          data.response.result = replies
-          next()
+          else {
+            data.response.result = replies
+            next()
+          }
         })
       }
     })
