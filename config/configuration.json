@@ -1,6 +1,6 @@
 {
   "MinimumDelay" : 300000,
-  "MinimumDeuration" : 604800000,
+  "MinimumDuration" : 604800000,
 
   "TableTemporary": "Temporary:",
 

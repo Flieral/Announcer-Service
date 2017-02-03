@@ -4,7 +4,7 @@ var utility = require('../../public/method/utility')
 module.exports = {
   checkCampaignModel: function (redisClient, accountHashID, payload, callback) {
     var begTime = utility.getUnixTimeStamp() - configuration.MinimumDelay
-    var endTime = utility.getUnixTimeStamp() + configuration.MinimumDeuration
+    var endTime = utility.getUnixTimeStamp() + configuration.MinimumDuration
     var tableName = configuration.TableMAAccountModelAnnouncerAccountModel + accountHashID
     redisClient.hget(tableName, configuration.ConstantAMAAMBudget, function (err, replies) {
       if (err) {
