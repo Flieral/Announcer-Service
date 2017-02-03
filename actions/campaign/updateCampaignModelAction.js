@@ -16,15 +16,24 @@ exports.updateCampaignModelAction = {
   inputs: Input,
 
   run: function (api, data, next) {
-    
     var payload = JSON.parse(JSON.stringify(data.connection.rawConnection.params.body))
-    writeCampaignModelLogic.updateCampaignModel(api.redisClient, data.params.accountHashID, data.params.campaignHashID, payload, function (err, replies) {
+    campaignModelCheckerLogic.checkCampaignModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, result) {
       if (err) {
         data.response.error = err.error
         next(err)
       }
-      data.response.result = replies
-      next()
+      else {
+        writeCampaignModelLogic.updateCampaignModel(api.redisClient, data.params.accountHashID, data.params.campaignHashID, payload, function (err, replies) {
+          if (err) {
+            data.response.error = err.error
+            next(err)
+          }
+          else {
+            data.response.result = replies
+            next()
+          }
+        })
+      }
     })
   }
 }

@@ -2,6 +2,9 @@ var writeCampaignSettingModelLogic = require('../../logic/setting/campaign/write
 var campaignSettingModelCheckerLogic = require('../../logic/setting/campaign/campaignSettingModelCheckerLogic')
 
 var Input = {
+	accountHashID: {
+		required: true
+	},
   campaignHashID: {
     required: true
   }
@@ -14,13 +17,23 @@ exports.saveCampaignSettingAction = {
 
   run: function (api, data, next) {
     var payload = JSON.parse(JSON.stringify(data.connection.rawConnection.params.body))
-    writeCampaignSettingModelLogic.setCampaignSettingModel(api.redisClient, data.params.campaignHashID, payload, function (err, replies) {
-      if (err) {
-        data.response.error = err.error
-        next(err)
+		campaignSettingModelCheckerLogic.checkCampaignSettingModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, function (err, result) {
+			if (err) {
+				data.response.error = err.error
+				next(err)
       }
-      data.response.result = replies
-      next()
+      else {
+        campaignSettingModelLogic.setCampaignSettingModel(api.redisClient, data.params.campaignHashID, payload, function (err, replies) {
+          if (err) {
+            data.response.error = err.error
+            next(err)
+          }
+          else {
+            data.response.result = replies
+            next()
+          }
+        })
+      }
     })
   }
 }
