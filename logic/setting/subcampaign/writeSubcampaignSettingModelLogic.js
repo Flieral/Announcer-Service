@@ -25,56 +25,52 @@ module.exports = {
         scoreMemberArray.push(keyValueArray[j])
       }
 
-      var counter = 0
-      for (var j = 0; j < keyValueArray.length; j++) {
-        table = configuration.TableModel.general.SubcampaignModel + campaignHashID
-        utility.stringReplace(table, '@', key)
-        
-        redisClient.zrange(table, '0', '-1', function (err, replies) {
-          if (err) {
-            callback(err, null)
-            return
-          }
+      table = configuration.TableModel.general.SubcampaignModel + campaignHashID
+      utility.stringReplace(table, '@', key)
 
+      redisClient.zrange(table, '0', '-1', function (err, replies) {
+        if (err) {
+          callback(err, null)
+          return
+        }
+
+        for (var k = 0; k < replies.length; k++) {
           table = configuration.TableModel.general.SubcampaignModel + campaignHashID
-          for (var k = 0; k < replies.length; k++) {
-            utility.stringReplace(table, '@', replies[k])
-            multi.zrem(table, subcampaignHashID)
-          }
+          utility.stringReplace(table, '@', replies[k])
+          multi.zrem(table, subcampaignHashID)
+        }
 
+        for (var j = 0; j < keyValueArray.length; j++) {
           /* Add to Model List */
-          table = configuration.TableModel.general.SubcampaignModel + campaignHashID
+          table = configuration.TableModel.general.SubcampaignModel + accountHashID
           utility.stringReplace(table, '@', keyValueArray[j])
           multi.zadd(table, score, subcampaignHashID)
           /* Add to Model Set */
           table = configuration.TableModel.general.SubcampaignModel
           utility.stringReplace(table, '@', keyValueArray[j])
           multi.zadd(table, score, subcampaignHashID)
-
-          counter++
-        })
-
-        if (counter == keyValueArray.length) {
-          /* Model Set */
-          table = configuration.TableModel.general.subcampaignHashID + subcampaignHashID
-          utility.stringReplace(table, '@', key)
-          /* Remove from Model Set */
-          multi.zremrangebyrank(table, '0', '-1')
-          /* Add to Model Set */
-          scoreMemberArray.unshift(table)
-          multi.zadd(scoreMemberArray)
         }
-      }
 
-      if (finalCounter == settingKeys.length) {
-        multi.exec(function (err, replies) {
-          if (err) {
-            callback(err, null)
-            return
-          }
-          callback(null, configuration.message.setting.subcampaign.set.successful)
-        })
-      }
-    } 
+        /* Model Set */
+        table = configuration.TableModel.general.SubcampaignModel + subcampaignHashID
+        utility.stringReplace(table, '@', key)
+        /* Remove from Model Set */
+        multi.zremrangebyrank(table, '0', '-1')
+        /* Add to Model Set */
+        scoreMemberArray.unshift(table)
+        multi.zadd(scoreMemberArray)
+
+        finalCounter++
+        if (finalCounter == keyValueArray.length) {
+          multi.exec(function (err, replies) {
+            if (err) {
+              callback(err, null)
+              return
+            }
+            callback(null, configuration.message.setting.subcampaign.set.successful)
+          })
+        }
+      })
+    }
   }
 }
