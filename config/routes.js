@@ -23,11 +23,11 @@ exports['default'] = {
           action: 'getSubcampaignModelAction'
         },
         {
-          path: '/campaign/:campaignHashID/setting',
+          path: '/account/:accountHashID/campaign/:campaignHashID/setting',
           action: 'getCampaignSettingAction'
         },
         {
-          path: '/campaign/:campaignHashID/subcampaign/:subCampaignHashID/setting',
+          path: '/account/:accountHashID/campaign/:campaignHashID/subcampaign/:subCampaignHashID/setting',
           action: 'getSubcampaignSettingAction'
         }
       ],
@@ -59,11 +59,11 @@ exports['default'] = {
           action: 'updateSubcampaignModelAction'
         },
         {
-          path: '/campaign/:campaignHashID/setting',
+          path: '/account/:accountHashID/campaign/:campaignHashID/setting',
           action: 'saveCampaignSettingAction'
         },
         {
-          path: '/campaign/:campaignHashID/subcampaign/:subCampaignHashID/setting',
+          path: '/account/:accountHashID/campaign/:campaignHashID/subcampaign/:subCampaignHashID/setting',
           action: 'saveSubcampaignSettingAction'
         }
       ],
