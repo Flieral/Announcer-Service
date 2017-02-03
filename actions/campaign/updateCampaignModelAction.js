@@ -23,14 +23,22 @@ exports.updateCampaignModelAction = {
         next(err)
       }
       else {
-        writeCampaignModelLogic.updateCampaignModel(api.redisClient, data.params.accountHashID, data.params.campaignHashID, payload, function (err, replies) {
+        campaignModelCheckerLogic.checkCampaignModel(api.redisClient, data.params.accountHashID, payload, function (err, replies) {
           if (err) {
             data.response.error = err.error
             next(err)
           }
           else {
-            data.response.result = replies
-            next()
+            writeCampaignModelLogic.updateCampaignModel(api.redisClient, data.params.accountHashID, data.params.campaignHashID, payload, function (err, replies) {
+              if (err) {
+                data.response.error = err.error
+                next(err)
+              }
+              else {
+                data.response.result = replies
+                next()
+              }
+            })
           }
         })
       }

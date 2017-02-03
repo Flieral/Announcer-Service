@@ -13,8 +13,8 @@ var Input = {
   complexModel: {
     required: flase,
     default: function (param, connection, actionTemplate) {
-      return false;
-    },
+      return false
+    }
   }
 }
 

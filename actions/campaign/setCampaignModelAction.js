@@ -14,14 +14,22 @@ exports.setCampaignModelAction = {
 
   run: function (api, data, next) {
     var payload = JSON.parse(JSON.stringify(data.connection.rawConnection.params.body))
-    writeCampaignModelLogic.setCampaignModel(api.redisClient, data.params.accountHashID, payload, function (err, replies) {
+    campaignModelCheckerLogic.checkCampaignModel(api.redisClient, data.params.accountHashID, payload, function (err, replies) {
       if (err) {
         data.response.error = err.error
         next(err)
       }
       else {
-        data.response.result = replies
-        next()
+        writeCampaignModelLogic.setCampaignModel(api.redisClient, data.params.accountHashID, payload, function (err, replies) {
+          if (err) {
+            data.response.error = err.error
+            next(err)
+          }
+          else {
+            data.response.result = replies
+            next()
+          }
+        })
       }
     })
   }
