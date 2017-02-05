@@ -3,9 +3,9 @@ var utility = require('../../public/method/utility')
 var campaignModelCheckerLogic = require('../campaign/campaignModelCheckerLogic')
 
 module.exports = {
-  checkSubcampaignModel: function (redisClient, subcampaignHashID, payload, callback) {
-    var tableName = configuration.TableMASubcampaignModel + subcampaignHashID
-    redisClient.hget(tableName, configuration.ConstantSCMMinBudget, function (err, replies) {
+  checkSubcampaignModel: function (redisClient, campaignHashID, payload, callback) {
+    var tableName = configuration.TableMACampaignModel + campaignHashID
+    redisClient.hget(tableName, configuration.ConstantCMBudget, function (err, replies) {
       if (err) {
         callback(err, null)
         return
@@ -13,7 +13,7 @@ module.exports = {
       if (parseInt(payload[configuration.ConstantSCMMinBudget]) <= parseInt(replies)) {
         callback(null, 'Successful Check')
       } else {
-        callback(new Error('Budget Problem'), null)
+        callback(new Error('Subcampaign Budget Problem'), null)
         return
       }
     })
@@ -57,6 +57,16 @@ module.exports = {
           else
             callback(null, configuration.message.subcampaign.notExist)
         })
-      }    
+      }
+    })
+  },
+  checkSubcampaignListForExistence: function (redisClient, accountHashID, campaignHashID, callback) {
+    campaignModelCheckerLogic.checkCampaignModelForNotExistence(redisClient, accountHashID, campaignHashID, function (err, replies) {
+      if (err) {
+        callback(err, null)
+        return
+      } else
+          callback(null, replies)
+    })
   }
-}
+} 
