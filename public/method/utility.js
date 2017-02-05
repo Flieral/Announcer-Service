@@ -1,6 +1,6 @@
 var uuid = require('node-uuid')
-var countryList = require('../config/country.json')
-var configuration = require('../config/configuration.json')
+var countryList = require('../configuration/country.json')
+var configuration = require('../../config/configuration')
 
 module.exports = {
   generateQueryString: function (data) {
