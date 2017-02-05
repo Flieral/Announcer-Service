@@ -2,7 +2,7 @@ var configuration = require('../../config/configuration.json')
 var utility = require('../../public/method/utility')
 
 module.exports = {
-  setSubcampaignModel: function (redisClient, accountHashID, payload, callback) {
+  setSubcampaignModel: function (redisClient, campaignHashID, payload, callback) {
     var tableName, tempTable
     var subcampaignHashID = utility.generateUniqueHashID()
     var score = utility.getUnixTimeStamp()
@@ -19,14 +19,14 @@ module.exports = {
       configuration.ConstantSCMFileURL, payload[configuration.ConstantSCMFileURL]
     )
 
-    /* Add to CampaignModel:SubcampaignModel:SubcampaignStyleType:accountHashID */
+    /* Add to CampaignModel:SubcampaignModel:SubcampaignStyleType:campaignHashID */
     tempTable = configuration.TableModel.general.SubcampaignModel
-    tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantSCMSubcampaignStyle]) + accountHashID
+    tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantSCMSubcampaignStyle]) + campaignHashID
     multi.zadd(tableName, score, subcampaignHashID)
 
-    /* Add to CampaignModel:SubcampaignModel:SubcampaignPlanType:accountHashID */
+    /* Add to CampaignModel:SubcampaignModel:SubcampaignPlanType:campaignHashID */
     tempTable = configuration.TableModel.general.CampaignModel
-    tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantSCMSubcampaignPlan]) + accountHashID
+    tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantSCMSubcampaignPlan]) + campaignHashID
     multi.zadd(tableName, score, subcampaignHashID)
 
     /* Add to CampaignModel:SubcampaignModel:SubcampaignStyleType: */
@@ -52,7 +52,7 @@ module.exports = {
     })
   },
 
-  updateCampaignModel: function (redisClient, accountHashID, campaignHashID, payload, callback) {
+  updateSubcampaignModel: function (redisClient, campaignHashID, subcampaignHashID, payload, callback) {
     var tableName, tempTable
     var score = utility.getUnixTimeStamp()
     var multi = redisClient.multi()
@@ -103,12 +103,12 @@ module.exports = {
         if ((payload[configuration.ConstantSCMSubcampaignStyle] != null && payload[configuration.ConstantSCMSubcampaignStyle] != undefined) && replies[2] !== payload[configuration.ConstantSCMSubcampaignStyle]) {
           updateFlag = true
           /* Update SubcampaignModel:subcampaignHashID */
-          tableName = configuration.TableMASubcampaignModel + campaignHashID
+          tableName = configuration.TableMASubcampaignModel + subcampaignHashID
           multi.hset(tableName, configuration.ConstantSCMSubcampaignStyle, payload[configuration.ConstantSCMSubcampaignStyle])
 
           /* Delete from CampaignModel:SubcampaignModel:SubCampaignStyle:campaignHashID */
           tempTable = configuration.TableModel.general.SubcampaignModel
-          tableName = utility.stringReplace(tempTable, '@', replies[2]) + accountHashID
+          tableName = utility.stringReplace(tempTable, '@', replies[2]) + campaignHashID
           multi.zrem(tableName, subcampaignHashID)
 
           /* Delete from CampaignModel:SubcampaignModel:SubCampaignStyle: */
@@ -118,7 +118,7 @@ module.exports = {
 
           /* Add to CampaignModel:SubcampaignModel:SubCampaignStyle:campaignHashID */
           tempTable = configuration.TableModel.general.SubcampaignModel
-          tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantSCMSubcampaignStyle]) + accountHashID
+          tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantSCMSubcampaignStyle]) + campaignHashID
           multi.zadd(tableName, score, subcampaignHashID)
 
           /* Add to CampaignModel:SubcampaignModel:SubCampaignStyle: */
@@ -129,13 +129,13 @@ module.exports = {
 
         if ((payload[configuration.ConstantSCMSubcampaignPlan] != null && payload[configuration.ConstantSCMSubcampaignPlan] != undefined) && replies[3] !== payload[configuration.ConstantSCMSubcampaignPlan]) {
           updateFlag = true
-          /* Update CampaignModel:campaignHashID */
-          tableName = configuration.TableMACampaignModel + campaignHashID
+          /* Update SubcampaignModel:subcampaignHashID */
+          tableName = configuration.TableMASubcampaignModel + subcampaignHashID
           multi.hset(tableName, configuration.ConstantSCMSubcampaignPlan, payload[configuration.ConstantSCMSubcampaignPlan])
 
           /* Delete from CampaignModel:SubcampaignModel:SubCampaignPlanType:campaignHashID */
           tempTable = configuration.TableModel.general.SubcampaignModel
-          tableName = utility.stringReplace(tempTable, '@', replies[3]) + accountHashID
+          tableName = utility.stringReplace(tempTable, '@', replies[3]) + campaignHashID
           multi.zrem(tableName, subcampaignHashID)
 
           /* Delete from CampaignModel:SubcampaignModel:SubCampaignPlanType: */
@@ -145,7 +145,7 @@ module.exports = {
 
           /* Add to CampaignModel:SubcampaignModel:SubCampaignPlanType:campaignHashID */
           tempTable = configuration.TableModel.general.SubcampaignModel
-          tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantSCMSubcampaignPlan]) + accountHashID
+          tableName = utility.stringReplace(tempTable, '@', payload[configuration.ConstantSCMSubcampaignPlan]) + campaignHashID
           multi.zadd(tableName, score, subcampaignHashID)
 
           /* Add to CampaignModel:SubcampaignModel:SubCampaignPlanType: */
@@ -176,7 +176,7 @@ module.exports = {
     )
   },
 
-  deleteCampaignModel: function (redisClient, campaignHashID, subcampaignHashID, callback) {
+  deleteSubcampaignModel: function (redisClient, campaignHashID, subcampaignHashID, callback) {
     var multi = redisClient.multi()
     tableName = configuration.TableMASubcampaignModel + subcampaignHashID
     redisClient.hmget(tableName,
@@ -188,14 +188,14 @@ module.exports = {
           return
         }
 
-        /* Remove from CampaignModel:SubcampaignModel:SubcampaignStyleType:accountHashID */
+        /* Remove from CampaignModel:SubcampaignModel:SubcampaignStyleType:campaignHashID */
         tempTable = configuration.TableModel.general.SubcampaignModel
-        tableName = utility.stringReplace(tempTable, '@', replies[0]) + accountHashID
+        tableName = utility.stringReplace(tempTable, '@', replies[0]) + campaignHashID
         multi.zrem(tableName, subcampaignHashID)
 
-        /* Remove from CampaignModel:SubcampaignModel:SubcampaignPlanType:accountHashID */
-        tempTable = configuration.TableModel.general.CampaignModel
-        tableName = utility.stringReplace(tempTable, '@', replies[1]) + accountHashID
+        /* Remove from CampaignModel:SubcampaignModel:SubcampaignPlanType:campaignHashID */
+        tempTable = configuration.TableModel.general.SubcampaignModel
+        tableName = utility.stringReplace(tempTable, '@', replies[1]) + campaignHashID
         multi.zrem(tableName, subcampaignHashID)
 
         /* Remove from CampaignModel:SubcampaignModel:SubcampaignStyleType: */
@@ -204,7 +204,7 @@ module.exports = {
         multi.zrem(tableName, subcampaignHashID)
 
         /* Remove from CampaignModel:SubcampaignModel:SubcampaignPlanType: */
-        tempTable = configuration.TableModel.general.CampaignModel
+        tempTable = configuration.TableModel.general.SubcampaignModel
         tableName = utility.stringReplace(tempTable, '@', replies[1])
         multi.zrem(tableName, subcampaignHashID)
 
@@ -212,7 +212,7 @@ module.exports = {
         tableName = configuration.TableMSCampaignModelSubcampaignModel + campaignHashID
         multi.zrem(tableName, subcampaignHashID)
 
-        tableName = configuration.TableMACampaignModel + campaignHashID
+        tableName = configuration.TableMASubcampaignModel + subcampaignHashID
         multi.hdel(tableName,
           configuration.ConstantSCMMinBudget,
           configuration.ConstantSCMSubcampaignName,
