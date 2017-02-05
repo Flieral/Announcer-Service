@@ -15,7 +15,7 @@ var Input = {
     }
   },
   complexModel: {
-    required: flase,
+    required: false,
     default: function (param, connection, actionTemplate) {
       return false
     }
