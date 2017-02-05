@@ -24,7 +24,7 @@ module.exports = {
   getSubcampaignList: function (redisClient, campiagnHashID, filter, callback) {
     var filterKeys = Object.keys(filter)
     if (filterKeys.length == 0) {
-      var tableName = configuration.TableMSCampaignModelSubcampaignModel + accountHashID
+      var tableName = configuration.TableMSCampaignModelSubcampaignModel + campiagnHashID
       redisClient.zrange(tableName, '0', '-1', 'WITHSCORES', function (err, replies) {
         if (err) {
           callback(err, null)

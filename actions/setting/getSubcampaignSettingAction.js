@@ -19,13 +19,13 @@ exports.getsubCampaignSettingModelAction = {
   inputs: Input,
 
   run: function (api, data, next) {
-    subcampaignSettingModelCheckerLogic.checksubCampaignSettingModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, data.params.subcampaignHashID, function (err, result) {
+    subcampaignSettingModelCheckerLogic.checkSubcampaignSettingModelForExistence(api.redisClient, data.params.accountHashID, data.params.campaignHashID, data.params.subcampaignHashID, function (err, result) {
       if (err) {
         data.response.error = err.error
         next(err)
       }
       else {
-        readsubcampaignSettingModelLogic.getsubcampaignSettingModel(api.redisClient, data.params.campaignHashID, data.params.subcampaignHashID, function (err, replies) {
+        readsubcampaignSettingModelLogic.getsubcampaignSettingModel(api.redisClient, data.params.subcampaignHashID, function (err, replies) {
           if (err) {
             data.response.error = err.error
             next(err)

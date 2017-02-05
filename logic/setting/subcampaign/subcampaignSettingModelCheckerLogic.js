@@ -2,7 +2,7 @@ var configuration = require('../../../config/configuration.json')
 var subcampaignModelCheckerLogic = require('../../subcampaign/subcampaignModelCheckerLogic')
 
 module.exports = {
-  checksubCampaignSettingModelForExistence: function (redisClient, accountHashID, campaignHashID, subCampaignHashID, callback) {
+  checkSubcampaignSettingModelForExistence: function (redisClient, accountHashID, campaignHashID, subCampaignHashID, callback) {
     subcampaignModelCheckerLogic.checkSubcampaignModelForExistence(redisClient, accountHashID, campaignHashID, subCampaignHashID, function (err, result) {
       if (err) {
         callback(err, null)
@@ -12,7 +12,7 @@ module.exports = {
     })
   },
 
-  checksubCampaignSettingModelForNotExistence: function (redisClient, accountHashID, campaignHashID, subCampaignHashID, callback) {
+  checkSubcampaignSettingModelForNotExistence: function (redisClient, accountHashID, campaignHashID, subCampaignHashID, callback) {
     subcampaignModelCheckerLogic.checkSubcampaignModelForNotExistence(redisClient, accountHashID, campaignHashID, subCampaignHashID, function (err, result) {
       if (err) {
         callback(err, null)
