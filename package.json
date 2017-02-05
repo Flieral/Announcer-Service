@@ -1,24 +1,25 @@
 {
-  "author"      : "Flieral Inc. <Support@Flieral.com>",
-  "name"        : "Announcer-Service",
-  "description" : "Announcer Service",
-  "version"     : "1.0.0",
-  "engines"     : {
+  "author": "Flieral Inc. <Support@Flieral.com>",
+  "name": "Announcer-Service",
+  "description": "Announcer Service",
+  "version": "1.0.0",
+  "engines": {
     "node": ">=4.0.0"
   },
-  "dependencies" : {
-    "actionhero" : "16.0.0",
-    "ws"         : "latest",
-    "fakeredis"  : "latest",
-    "ioredis"    : "latest"
+  "dependencies": {
+    "actionhero": "16.0.0",
+    "fakeredis": "^1.0.3",
+    "ioredis": "latest",
+    "node-uuid": "^1.4.7",
+    "ws": "latest"
   },
-  "devDependencies" : {
-    "mocha"  : "latest",
-    "should" : "latest"
+  "devDependencies": {
+    "mocha": "latest",
+    "should": "latest"
   },
-  "scripts" : {
-    "start"        : "actionhero start",
-    "actionhero"   : "actionhero",
-    "test"         : "NODE_ENV=test mocha"
+  "scripts": {
+    "start": "actionhero start",
+    "actionhero": "actionhero",
+    "test": "NODE_ENV=test mocha"
   }
 }
