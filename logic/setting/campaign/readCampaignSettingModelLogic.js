@@ -9,6 +9,7 @@ module.exports = {
         callback(err, null)
         return
       }
+      model[configuration.ConstantSMPriority] = replies
       var settingKeys = Object.keys(configuration.settingEnum)
       var counter = 0
       for (var i = 0; i < settingKeys.length; i++) {
