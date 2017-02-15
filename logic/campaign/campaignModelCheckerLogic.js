@@ -13,9 +13,10 @@ module.exports = {
       }
       if (parseInt(payload[configuration.ConstantCMBudget]) <= parseInt(replies)) {
         // First Check Pass
-        if (parseInt(payload[configuration.ConstantCMBeginningTime]) >= begTime) {
+        console.log(payload)
+        if ((payload[configuration.ConstantCMBeginningTime]) >= begTime) {
           // Second Check Pass
-          if (parseInt(payload[configuration.ConstantCMEndingTime]) >= endTime) {
+          if ((payload[configuration.ConstantCMEndingTime]) >= endTime) {
             // Third Check Pass
             callback(null, 'Successful Check')
           }
