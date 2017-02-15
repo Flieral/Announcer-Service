@@ -1,5 +1,5 @@
 var configuration = require('../../../config/configuration.json')
-
+var utility = require('../../../public/method/utility')
 module.exports = {
   getsubcampaignSettingModel: function (redisClient, subcampaignHashID, callback) {
     var tableName = configuration.TableMASubcampaignModelSettingModel + subcampaignHashID
@@ -18,7 +18,7 @@ module.exports = {
         
         var key = settingKeys[i]
         var table = configuration.TableModel.general.SubcampaignModel + subcampaignHashID
-        utility.stringReplace(table, '@', key)
+        table = utility.stringReplace(table, '@', key)
         multi.zrange(table, '0', '-1', function (err, replies) {
           if (err) {
             callback(err, null)

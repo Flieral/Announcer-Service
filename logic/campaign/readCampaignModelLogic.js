@@ -46,7 +46,7 @@ module.exports = {
       for (var i = 0; i < filterKeys.length; i++) {
         var key = configuration.campaignEnum[filterKeys[i]]
         var table = configuration.TableModel.general.CampaignModel + accountHashID
-        utility.stringReplace(table, '@', key)
+        table = utility.stringReplace(table, '@', key)
         args.push(table)
       }
       args.push('AGGREGATE')

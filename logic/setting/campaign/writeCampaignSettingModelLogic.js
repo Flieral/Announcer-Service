@@ -26,7 +26,7 @@ module.exports = {
       }
 
       table = configuration.TableModel.general.CampaignModel + accountHashID
-      utility.stringReplace(table, '@', key)
+      table = utility.stringReplace(table, '@', key)
 
       redisClient.zrange(table, '0', '-1', function (err, replies) {
         if (err) {
@@ -36,24 +36,24 @@ module.exports = {
 
         for (var k = 0; k < replies.length; k++) {
           table = configuration.TableModel.general.CampaignModel + accountHashID
-          utility.stringReplace(table, '@', replies[k])
+          table = utility.stringReplace(table, '@', replies[k])
           multi.zrem(table, campaignHashID)
         }
 
         for (var j = 0; j < keyValueArray.length; j++) {
           /* Add to Model List */
           table = configuration.TableModel.general.CampaignModel + accountHashID
-          utility.stringReplace(table, '@', keyValueArray[j])
+          table = utility.stringReplace(table, '@', keyValueArray[j])
           multi.zadd(table, score, campaignHashID)
           /* Add to Model Set */
           table = configuration.TableModel.general.CampaignModel
-          utility.stringReplace(table, '@', keyValueArray[j])
+          table = utility.stringReplace(table, '@', keyValueArray[j])
           multi.zadd(table, score, campaignHashID)
         }
 
         /* Model Set */
         table = configuration.TableModel.general.CampaignModel + campaignHashID
-        utility.stringReplace(table, '@', key)
+        table = utility.stringReplace(table, '@', key)
         /* Remove from Model Set */
         multi.zremrangebyrank(table, '0', '-1')
         /* Add to Model Set */

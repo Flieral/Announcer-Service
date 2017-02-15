@@ -24,7 +24,7 @@ module.exports = {
     /* Add to AccountModel:AnnouncerAccountType: */
     accountType = payload.accountType
     tableName = configuration.TableModel.general.AnnouncerModel
-    utility.stringReplace(tableName, '@', accountType)
+    tableName = utility.stringReplace(tableName, '@', accountType)
     multi.zadd(tableName, 'NX', score, accountHashID)
 
     multi.exec(function (err, replies) {
@@ -37,7 +37,7 @@ module.exports = {
   },
   updateAccountModel: function (redisClient, accountHashID, payload, callback) {
     var multi = redisClient.multi()
-
+    var counter = Object.keys(payload).length
     var tableName = configuration.TableMAAccountModelAnnouncerAccountModel + accountHashID
     //Not Exist
     if (payload[configuration.ConstantAMAAMBudget] != null) {
@@ -50,7 +50,16 @@ module.exports = {
         if (replies != null && replies != undefined) {
           var newbudget = parseInt(replies, 10) + parseInt(payload.budget)
           /* Write newbudget to AccountModel:AnnouncerAccountModel:AccountHashID */
-          multi.hset(tableName, configuration.ConstantAMAAMBudget, newbudget.toString())
+          multi.hset(tableName, configuration.ConstantAMAAMBudget, newbudget)
+          multi.exec(function (err, replies) {
+            if (err) {
+              callback(err, null)
+              return
+            }
+            counter--
+            if (counter == 0)
+              callback(null, 'Updated in AccountModel and somewhere else')
+          })
         }
       })
     }
@@ -64,25 +73,29 @@ module.exports = {
         if (replies != null && replies != undefined) {
           if (replies !== payload.accountType) {
             var accountTypeTableName = configuration.TableModel.general.AnnouncerModel
-            utility.stringReplace(accountTypeTableName, '@', replies)
+            accountTypeTableName = utility.stringReplace(accountTypeTableName, '@', replies)
             /* Remove accountHashID from AccountModel:AnnouncerAccountType: table */
             multi.zrem(accountTypeTableName, accountHashID)
             accountTypeTableName = configuration.TableModel.general.AnnouncerModel
-            utility.stringReplace(accountTypeTableName, '@', payload.accountType)
+            accountTypeTableName = utility.stringReplace(accountTypeTableName, '@', payload.accountType)
             var score = utility.getUnixTimeStamp()
             /* Add accountHashID to AccountModel:AnnouncerAccountType:(new) table */
             multi.zadd(accountTypeTableName, 'NX', score, accountHashID)
+            /* Write accountType to AccountModel:AnnouncerAccountModel:AccountHashID */
+            var tableName = configuration.TableMAAccountModelAnnouncerAccountModel + accountHashID
+            multi.hset(tableName, configuration.ConstantAMAAMAccountType, payload.accountType)
+            multi.exec(function (err, replies) {
+              if (err) {
+                callback(err, null)
+                return
+              }
+              counter--
+              if (counter == 0)
+                callback(null, 'Updated in AccountModel and somewhere else')
+            })
           }
         }
       })
     }
-    multi.exec(function (err, replies) {
-      if (err) {
-        callback(err, null)
-        return
-      }
-      callback(null, 'Updated in AccountModel and somewhere else')
-    })
-
   }
 }
