@@ -11,7 +11,10 @@ module.exports = {
           callback(err, null)
           return
         }
-        callback(null, replies)
+        var res = {}
+        res[configuration.ConstantAMAAMBudget] = replies[0]
+        res[configuration.ConstantAMAAMAccountType] = replies[1]
+        callback(null, res)
       }
     )
   }

@@ -16,7 +16,14 @@ module.exports = {
           callback(err, null)
           return
         }
-        callback(null, replies)
+        var res = {}
+        res[configuration.ConstantSCMMinBudget] = replies[0]
+        res[configuration.ConstantSCMSubcampaignName] = replies[1]
+        res[configuration.ConstantSCMSubcampaignStyle] = replies[2]
+        res[configuration.ConstantSCMSubcampaignPlan] = replies[3]
+        res[configuration.ConstantSCMSubcampaignPrice] = replies[4]
+        res[configuration.ConstantSCMFileURL] = replies[5]
+        callback(null, res)
       }
     )
   },
@@ -30,7 +37,14 @@ module.exports = {
           callback(err, null)
           return
         }
-        callback(null, replies)
+        var res = []
+        for (var i = 0; i < replies.length; i = i + 2) {
+          var innerRes = {}
+          innerRes[configuration.ModelsKey.SubcampaignHashID] = replies[i]
+          innerRes[configuration.ModelsKey.Score] = replies[i + 1]
+          res.push(innerRes)
+        }
+        callback(null, res)
       })
     }
     else {
@@ -63,7 +77,14 @@ module.exports = {
               callback(err, null)
               return
             }
-            callback(null, result)
+            var res = []
+            for (var i = 0; i < result.length; i = i + 2) {
+              var innerRes = {}
+              innerRes[configuration.ModelsKey.SubcampaignHashID] = result[i]
+              innerRes[configuration.ModelsKey.Score] = result[i + 1]
+              res.push(innerRes)
+            }
+            callback(null, res)
           })
         })
       })
@@ -78,8 +99,9 @@ module.exports = {
       }
       var counter = 0
       var response = []
-      for (var i = 0; i < result.length; i = i + 2) {
-        var model = this.getSubcampaignModel(redisClient, result[i], function (err, replies) {
+      for (var i = 0; i < result.length; i++) {
+        var model = result[i]
+        this.getSubcampaignModel(redisClient, model[configuration.ModelsKey.SubcampaignHashID], function (err, replies) {
           if (err) {
             callback(err, null)
             return

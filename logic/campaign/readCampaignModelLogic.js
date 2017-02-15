@@ -20,7 +20,18 @@ module.exports = {
           callback(err, null)
           return
         }
-        callback(null, replies)
+        var res = {}
+        res[configuration.ConstantCMBudget] = replies[0]
+        res[configuration.ConstantCMBeginningTime] = replies[1]
+        res[configuration.ConstantCMEndingTime] = replies[2]
+        res[configuration.ConstantCMCampaignStatus] = replies[3]
+        res[configuration.ConstantCMCampaignName] = replies[4]
+        res[configuration.ConstantCMStartStyle] = replies[5]
+        res[configuration.ConstantCMSettingStyle] = replies[6]
+        res[configuration.ConstantCMMediaStyle] = replies[7]
+        res[configuration.ConstantCMWebhookIdentifier] = replies[8]
+        res[configuration.ConstantCMMessage] = replies[9]
+        callback(null, res)
       }
     )
   },
@@ -34,7 +45,14 @@ module.exports = {
           callback(err, null)
           return
         }
-        callback(null, replies)
+        var res = []
+        for (var i = 0; i < replies.length; i = i + 2) {
+          var innerRes = {}
+          innerRes[configuration.ModelsKey.CampaignHashID] = replies[i]
+          innerRes[configuration.ModelsKey.Score] = replies[i + 1]
+          res.push(innerRes)
+        }
+        callback(null, res)
       })
     }
     else {
@@ -67,7 +85,14 @@ module.exports = {
               callback(err, null)
               return
             }
-            callback(null, result)
+            var res = []
+            for (var i = 0; i < result.length; i = i + 2) {
+              var innerRes = {}
+              innerRes[configuration.ModelsKey.CampaignHashID] = result[i]
+              innerRes[configuration.ModelsKey.Score] = result[i + 1]
+              res.push(innerRes)
+            }
+            callback(null, res)
           })
         })
       })
@@ -82,8 +107,9 @@ module.exports = {
       }
       var counter = 0
       var response = []
-      for (var i = 0; i < result.length; i = i + 2) {
-        var model = this.getCampaignModel(redisClient, result[i], function (err, replies) {
+      for (var i = 0; i < result.length; i++) {
+        var model = result[i]
+        this.getCampaignModel(redisClient, model[configuration.ModelsKey.CampaignHashID], function (err, replies) {
           if (err) {
             callback(err, null)
             return

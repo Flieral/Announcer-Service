@@ -2,6 +2,13 @@
   "MinimumDelay" : 300000,
   "MinimumDuration" : 604800000,
 
+  "ModelsKey" : {
+    "Score" : "score",
+    "Account" : "accountHashID",
+    "Campaign" : "campaignHashID",
+    "Subcampaign" : "subcampaignHashID"
+  },
+
   "TableTemporary": "Temporary:",
 
   "ConstantAMAAMBudget": "budget",
